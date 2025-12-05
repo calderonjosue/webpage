@@ -7,15 +7,15 @@ const person: Person = {
   name: `Josué Calderón`,
   role: "QA Automation Engineer",
   avatar: "/images/Foto de perfil de LinkedIn.jpg",
-  email: "josue.calderon@example.com",
+  email: "Luisjosue1205@gmail.com",
   location: "America/Bogota", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["Spanish", "English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>Insights on QA, automation, and quality engineering</>,
+  title: <>Contáctame por WhatsApp</>,
+  description: <>¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte con QA y automatización</>,
 };
 
 const social: Social = [
@@ -31,7 +31,7 @@ const social: Social = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/in/josuecalderon/",
+    link: "https://www.linkedin.com/in/calderon-josue-qa-analyst/",
     essential: true,
   },
   {
