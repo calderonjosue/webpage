@@ -20,6 +20,7 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
+  PiCertificateDuotone,
 } from "react-icons/pi";
 
 import {
@@ -27,6 +28,13 @@ import {
   SiNextdotjs,
   SiFigma,
   SiSupabase,
+  SiCypress,
+  SiSelenium,
+  SiPostman,
+  SiPython,
+  SiTypescript,
+  SiJira,
+  SiGrafana,
 } from "react-icons/si";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
@@ -43,6 +51,7 @@ export const iconLibrary: Record<string, IconType> = {
   calendar: HiCalendarDays,
   home: PiHouseDuotone,
   gallery: PiImageDuotone,
+  certificate: PiCertificateDuotone,
   discord: FaDiscord,
   eye: HiOutlineEye,
   eyeOff: HiOutlineEyeSlash,
@@ -58,6 +67,16 @@ export const iconLibrary: Record<string, IconType> = {
   nextjs: SiNextdotjs,
   supabase: SiSupabase,
   figma: SiFigma,
+  cypress: SiCypress,
+  playwright: HiOutlineRocketLaunch,
+  selenium: SiSelenium,
+  postman: SiPostman,
+  python: SiPython,
+  typescript: SiTypescript,
+  jira: SiJira,
+  grafana: SiGrafana,
+  database: HiOutlineDocument,
+  design: SiFigma,
   facebook: FaFacebook,
   pinterest: FaPinterest,
   whatsapp: FaWhatsapp,

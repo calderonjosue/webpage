@@ -2,20 +2,20 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  firstName: "Josué",
+  lastName: "Calderón",
+  name: `Josué Calderón`,
+  role: "QA Automation Engineer",
+  avatar: "/images/Foto de perfil de LinkedIn.jpg",
+  email: "josue.calderon@example.com",
+  location: "America/Bogota", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["Spanish", "English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
   display: true,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>Insights on QA, automation, and quality engineering</>,
 };
 
 const social: Social = [
@@ -25,25 +25,13 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/josuecalderon",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-    essential: true,
-  },
-  {
-    name: "Instagram",
-    icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    link: "https://www.linkedin.com/in/josuecalderon/",
     essential: true,
   },
   {
@@ -60,24 +48,25 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>Quality-driven testing with automation expertise</>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">UPEX</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+    I'm Josué, a QA Automation Engineer with expertise in <Text as="span" size="xl" weight="strong">Cypress, Playwright & Selenium</Text>. <br /> 
+    I combine technical testing skills with UX/UI design knowledge and business acumen to deliver quality products.
+    </>
   ),
 };
 
@@ -85,7 +74,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} from Bogotá, Colombia`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -94,7 +83,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -102,52 +91,60 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I'm a Bogotá-based QA Automation Engineer with a unique background in Literature and UX/UI Design. 
+        Originally from Venezuela, I combine analytical thinking from my humanities education with technical 
+        expertise in automated testing. My approach goes beyond finding bugs—I validate products from a 
+        user-centered perspective, ensuring quality aligns with business goals.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "UPEX",
+        timeframe: "September 2023 - March 2025",
+        role: "Quality Assurance Analyst",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            I designed and maintained End-to-End automation scripts using Cypress, Playwright, and Selenium, 
+            significantly increasing test coverage across web and mobile products.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            I integrated automated test suites into CI/CD pipelines (GitLab/Jenkins), establishing Quality Gates 
+            for continuous delivery and reducing critical production defects.
+          </>,
+          <>
+            I managed the complete defect lifecycle using Jira and Xray, improving documentation traceability and 
+            streamlining quality control processes.
+          </>,
+          <>
+            I collaborated in Agile ceremonies (Scrum/Kanban) with multidisciplinary teams, performing full-stack 
+            testing across data layers, APIs, and UI.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "The Vibe Tribe",
+        timeframe: "May 2023 - May 2024",
+        role: "Junior Manual QA Tester",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            I executed manual functional and regression testing for a travel mobile application MVP, ensuring 
+            visual consistency and accessibility compliance against Figma designs.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            I performed comprehensive API testing using Postman to validate stable data flow between backend 
+            and mobile frontend.
+          </>,
+          <>
+            I documented and tracked bugs in Jira within a continuous Scrum environment, participating in daily 
+            standups and technical reviews with Development and Design teams.
+          </>,
+          <>
+            I significantly reduced visual defects (UI/UX) through early defect detection (Shift Left approach).
           </>,
         ],
         images: [],
@@ -155,54 +152,77 @@ const about: About = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Education & Certifications",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "University of the Andes, Mérida",
+        description: <>Bachelor's Degree in Hispanic American Literature (2014-2018). Developed critical analysis, research, and communication skills.</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Testing & QA Certifications",
+        description: <>16 Professional Certifications from Platzi, UPEX, Postman, AICS, and QAlified (2023-Present) in Manual & Automated Testing.</>,
+      },
+      {
+        name: "UX/UI Design",
+        description: <>20 Certifications from Platzi (2021) covering user-centered design, accessibility (WCAG), Lean UX, and iterative prototyping.</>,
+      },
+      {
+        name: "Digital Marketing & Growth",
+        description: <>16 Certifications from Platzi and Google Digital Garage (2021-2025) in data-driven marketing, AARRR funnels, and A/B testing.</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
-    title: "Technical skills",
+    display: true,
+    title: "Technical Skills",
     skills: [
       {
-        title: "Figma",
+        title: "Test Automation",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>I'm an expert in E2E automation with Cypress, Playwright, and Selenium. I have experience in CI/CD integration and Quality Gates.</>
         ),
         tags: [
           {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "Cypress",
+            icon: "cypress",
           },
           {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "Playwright",
+            icon: "playwright",
+          },
+          {
+            name: "Selenium",
+            icon: "selenium",
           },
         ],
+        images: [],
       },
       {
-        title: "Next.js",
+        title: "API & Performance Testing",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>I'm proficient in API testing with Postman, performance testing with JMeter, and monitoring with Grafana.</>
+        ),
+        tags: [
+          {
+            name: "Postman",
+            icon: "postman",
+          },
+          {
+            name: "Grafana",
+            icon: "grafana",
+          },
+          {
+            name: "Jira",
+            icon: "jira",
+          },
+        ],
+        images: [],
+      },
+      {
+        title: "Development & Tools",
+        description: (
+          <>I have working knowledge of JavaScript, Python, TypeScript, SQL, and Agile tools like Jira, Confluence, and Xray.</>
         ),
         tags: [
           {
@@ -210,23 +230,32 @@ const about: About = {
             icon: "javascript",
           },
           {
-            name: "Next.js",
-            icon: "nextjs",
+            name: "Python",
+            icon: "python",
           },
           {
-            name: "Supabase",
-            icon: "supabase",
+            name: "TypeScript",
+            icon: "typescript",
           },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
+        images: [],
+      },
+      {
+        title: "UX/UI & Design",
+        description: (
+          <>I have a strong foundation in UX/UI design, Figma, accessibility standards (WCAG), and user-centered validation.</>
+        ),
+        tags: [
           {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "Figma",
+            icon: "figma",
+          },
+          {
+            name: "UX Design",
+            icon: "design",
           },
         ],
+        images: [],
       },
     ],
   },
@@ -235,7 +264,7 @@ const about: About = {
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
+  title: "Writing about the multiple connections between Engineering, Science, Poetry, and Philosophy",
   description: `Read what ${person.name} has been up to recently`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
@@ -245,57 +274,55 @@ const work: Work = {
   path: "/work",
   label: "Work",
   title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
+  description: `QA and automation projects by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
 };
 
 const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
+  path: "/certifications",
+  label: "Certifications",
+  title: `Certifications – ${person.name}`,
+  description: `Professional certifications and credentials by ${person.name}`,
   images: [
     {
       src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
+      alt: "Testing & Quality Assurance certifications",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
+      alt: "Programming certifications",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
+      alt: "UX/UI Design certifications",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
+      alt: "Digital Marketing certifications",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
+      alt: "Professional development",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
+      alt: "Technical skills certifications",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
+      alt: "Automation testing credentials",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
+      alt: "Quality assurance expertise",
       orientation: "vertical",
     },
   ],

@@ -7,6 +7,7 @@ import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
 
 import { routes, display, person, about, blog, work, gallery } from "@/resources";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
 import styles from "./Header.module.scss";
 
 type TimeDisplayProps = {
@@ -73,7 +74,7 @@ export const Header = () => {
         }}
       >
         <Row paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
-          {display.location && <Row s={{ hide: true }}>{person.location}</Row>}
+          {display.location && <Row s={{ hide: true }}>Colombia - Bogotá</Row>}
         </Row>
         <Row fillWidth horizontal="center">
           <Row
@@ -147,21 +148,21 @@ export const Header = () => {
                   </Row>
                 </>
               )}
-              {routes["/gallery"] && (
+              {routes["/certifications"] && (
                 <>
                   <Row s={{ hide: true }}>
                     <ToggleButton
-                      prefixIcon="gallery"
-                      href="/gallery"
+                      prefixIcon="certificate"
+                      href="/certifications"
                       label={gallery.label}
-                      selected={pathname.startsWith("/gallery")}
+                      selected={pathname.startsWith("/certifications")}
                     />
                   </Row>
                   <Row hide s={{ hide: false }}>
                     <ToggleButton
-                      prefixIcon="gallery"
-                      href="/gallery"
-                      selected={pathname.startsWith("/gallery")}
+                      prefixIcon="certificate"
+                      href="/certifications"
+                      selected={pathname.startsWith("/certifications")}
                     />
                   </Row>
                 </>
@@ -170,6 +171,8 @@ export const Header = () => {
                 <>
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />
                   <ThemeToggle />
+                  <Line background="neutral-alpha-medium" vert maxHeight="24" />
+                  <LanguageToggle />
                 </>
               )}
             </Row>
