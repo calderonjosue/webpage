@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { CustomMDX, ScrollToHash } from "@/components";
+import { useTranslation } from "@/hooks/useTranslation";
 import {
   Meta,
   Schema,
@@ -70,6 +71,9 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
       src: person.avatar,
     })) || [];
 
+  // Note: useTranslation must be called in a client component
+  // For now, we'll use hardcoded values that will be replaced by client component
+
   return (
     <Row fillWidth>
       <Row maxWidth={12} m={{ hide: true }} />
@@ -95,7 +99,9 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           />
           <Column maxWidth="s" gap="16" horizontal="center" align="center">
             <SmartLink href="/blog">
-              <Text variant="label-strong-m">Blog</Text>
+              <Text variant="label-strong-m" suppressHydrationWarning>
+                Blog
+              </Text>
             </SmartLink>
             <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
               {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
@@ -144,7 +150,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
 
           <Column fillWidth gap="40" horizontal="center" marginTop="40">
             <Line maxWidth="40" />
-            <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
+            <Heading as="h2" variant="heading-strong-xl" marginBottom="24" suppressHydrationWarning>
               Recent posts
             </Heading>
             <Posts exclude={[post.slug]} range={[1, 2]} columns="2" thumbnail direction="column" />
@@ -167,6 +173,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           vertical="center"
           onBackground="neutral-medium"
           textVariant="label-default-s"
+          suppressHydrationWarning
         >
           <Icon name="document" size="xs" />
           On this page

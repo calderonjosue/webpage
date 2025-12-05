@@ -3,6 +3,8 @@ import "@once-ui-system/core/css/tokens.css";
 import "@/resources/custom.css";
 
 import classNames from "classnames";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 import {
   Background,
@@ -16,7 +18,11 @@ import {
 import { Footer, Header, RouteGuard, Providers } from "@/components";
 import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   return Meta.generate({
     title: home.title,
     description: home.description,
@@ -28,14 +34,19 @@ export async function generateMetadata() {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  const messages = await getMessages();
+
   return (
     <Flex
       suppressHydrationWarning
       as="html"
-      lang="en"
+      lang={locale}
       fillWidth
       className={classNames(
         fonts.heading.variable,
@@ -104,15 +115,16 @@ export default async function RootLayout({
         />
       </head>
       <Providers>
-        <Column
-          as="body"
-          background="page"
-          fillWidth
-          style={{ minHeight: "100vh" }}
-          margin="0"
-          padding="0"
-          horizontal="center"
-        >
+        <NextIntlClientProvider messages={messages}>
+          <Column
+            as="body"
+            background="page"
+            fillWidth
+            style={{ minHeight: "100vh" }}
+            margin="0"
+            padding="0"
+            horizontal="center"
+          >
           <RevealFx fill position="absolute">
             <Background
               mask={{
@@ -163,7 +175,8 @@ export default async function RootLayout({
             </Flex>
           </Flex>
           <Footer />
-        </Column>
+          </Column>
+        </NextIntlClientProvider>
       </Providers>
     </Flex>
   );
