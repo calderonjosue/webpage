@@ -15,7 +15,7 @@ export default function Icon() {
       <div
         style={{
           fontSize: 20,
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: '#1a1a1a',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -24,7 +24,7 @@ export default function Icon() {
           color: 'white',
           fontWeight: 'bold',
           fontFamily: 'system-ui, sans-serif',
-          borderRadius: '6px',
+          borderRadius: '50%',
         }}
       >
         JC
