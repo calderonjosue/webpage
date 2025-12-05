@@ -1,25 +1,17 @@
 "use client";
 
 import { ToggleButton } from "@once-ui-system/core";
-import { useLocale, useRouter } from "next-intl";
-import { usePathname } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function LanguageToggle() {
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleLanguageChange = () => {
-    const newLocale = locale === "en" ? "es" : "en";
-    router.push(pathname, { locale: newLocale });
-  };
+  const { language, setLanguage } = useLanguage();
 
   return (
     <ToggleButton
-      selected={locale === "es"}
-      onClick={handleLanguageChange}
+      selected={language === "es"}
+      onClick={() => setLanguage(language === "en" ? "es" : "en")}
     >
-      {locale === "en" ? "ES" : "EN"}
+      {language === "en" ? "ES" : "EN"}
     </ToggleButton>
   );
 }
