@@ -1,6 +1,5 @@
-"use client";
+'use client';
 
-import { useLanguage } from "@/contexts/LanguageContext";
 import { CustomMDX, ScrollToHash } from "@/components";
 import {
   Column,
@@ -18,6 +17,7 @@ import { baseURL, about, blog, person } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { Posts } from "@/components/blog/Posts";
 import { ShareSection } from "@/components/blog/ShareSection";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/i18n/config";
 
 interface BlogPageContentProps {

@@ -4,7 +4,7 @@ import "@/resources/custom.css";
 
 import classNames from "classnames";
 import { Flex, Column, Meta, opacity, RevealFx, SpacingToken, Background } from "@once-ui-system/core";
-import { Footer, Header, RouteGuard, Providers } from "@/components";
+import { Footer, Header, RouteGuard, Providers, WhatsAppContact } from "@/components";
 import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
@@ -150,6 +150,7 @@ export default async function RootLayout({
                 <RouteGuard>{children}</RouteGuard>
               </Flex>
             </Flex>
+            <WhatsAppContact />
             <Footer />
           </Column>
         </LanguageProvider>

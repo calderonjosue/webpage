@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import { BlogPageContent } from "@/components/blog/BlogPageContent";
 
 export async function generateStaticParams(): Promise<{ locale: string; slug: string }[]> {
-  const posts = getPosts(["src", "app", "blog", "posts"]);
+  const posts = await getPosts(["src", "app", "blog", "posts"]);
   const locales = ['en', 'es'];
   return posts.flatMap((post) =>
     locales.map((locale) => ({
@@ -26,7 +26,7 @@ export async function generateMetadata({
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  const posts = getPosts(["src", "app", "blog", "posts"]);
+  const posts = await getPosts(["src", "app", "blog", "posts"]);
   let post = posts.find((post) => post.slug === slugPath);
 
   if (!post) return {};
@@ -46,7 +46,8 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slugPath);
+  const posts = await getPosts(["src", "app", "blog", "posts"]);
+  let post = posts.find((post) => post.slug === slugPath);
 
   if (!post) {
     notFound();

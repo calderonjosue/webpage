@@ -14,7 +14,7 @@ export const WhatsAppContact: React.FC<React.ComponentProps<typeof Column>> = ({
   const handleWhatsAppClick = () => {
     const phoneNumber = "573172137932";
     const encodedMessage = encodeURIComponent(
-      `Hola Josué, soy ${name || "un visitante"}. ${message || "Me gustaría contactarte."}`
+      `Hi Josué, I'm ${name || "a visitor"}. ${message || "I'd like to get in touch with you."}`
     );
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
@@ -92,7 +92,7 @@ export const WhatsAppContact: React.FC<React.ComponentProps<typeof Column>> = ({
           id="name"
           name="name"
           type="text"
-          placeholder="Tu nombre (opcional)"
+          placeholder="Your name (optional)"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -100,7 +100,7 @@ export const WhatsAppContact: React.FC<React.ComponentProps<typeof Column>> = ({
           id="message"
           name="message"
           type="text"
-          placeholder="Tu mensaje (opcional)"
+          placeholder="Your message (optional)"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
@@ -111,7 +111,7 @@ export const WhatsAppContact: React.FC<React.ComponentProps<typeof Column>> = ({
             fillWidth
             prefixIcon="whatsapp"
           >
-            Contactar por WhatsApp
+            Contact via WhatsApp
           </Button>
         </Row>
       </Column>

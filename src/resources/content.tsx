@@ -14,8 +14,8 @@ const person: Person = {
 
 const newsletter: Newsletter = {
   display: true,
-  title: <>Contáctame por WhatsApp</>,
-  description: <>¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte con QA y automatización</>,
+  title: <>Contact me on WhatsApp</>,
+  description: <>Have a project in mind? Let's talk about how I can help you with QA and automation</>,
 };
 
 const social: Social = [
@@ -26,6 +26,12 @@ const social: Social = [
     name: "GitHub",
     icon: "github",
     link: "https://github.com/calderonjosue",
+    essential: true,
+  },
+  {
+    name: "WhatsApp",
+    icon: "whatsapp",
+    link: "https://wa.me/573172137932",
     essential: true,
   },
   {

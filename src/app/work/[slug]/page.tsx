@@ -22,7 +22,7 @@ import { Metadata } from "next";
 import { Projects } from "@/components/work/Projects";
 
 export async function generateStaticParams(): Promise<{ locale: string; slug: string }[]> {
-  const posts = getPosts(["src", "app", "work", "projects"]);
+  const posts = await getPosts(["src", "app", "work", "projects"]);
   const locales = ['en', 'es'];
   return posts.flatMap((post) =>
     locales.map((locale) => ({
@@ -42,7 +42,7 @@ export async function generateMetadata({
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  const posts = getPosts(["src", "app", "work", "projects"]);
+  const posts = await getPosts(["src", "app", "work", "projects"]);
   let post = posts.find((post) => post.slug === slugPath);
 
   if (!post) return {};
@@ -66,7 +66,8 @@ export default async function Project({
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
+  const allProjects = await getPosts(["src", "app", "work", "projects"]);
+  let post = allProjects.find((post) => post.slug === slugPath);
 
   if (!post) {
     notFound();
@@ -133,7 +134,7 @@ export default async function Project({
         <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
           Related projects
         </Heading>
-        <Projects exclude={[post.slug]} range={[2]} />
+        <Projects projects={allProjects} exclude={[post.slug]} range={[2]} />
       </Column>
       <ScrollToHash />
     </Column>
