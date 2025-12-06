@@ -22,9 +22,10 @@ import { translations } from "@/i18n/config";
 
 interface BlogPageContentProps {
   post: any;
+  posts?: any[];
 }
 
-export function BlogPageContent({ post }: BlogPageContentProps) {
+export function BlogPageContent({ post, posts = [] }: BlogPageContentProps) {
   const { language } = useLanguage();
   const t = translations[language as keyof typeof translations] || translations.en;
 
@@ -92,7 +93,7 @@ export function BlogPageContent({ post }: BlogPageContentProps) {
             <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
               {t.recentPosts}
             </Heading>
-            <Posts exclude={[post.slug]} range={[1, 2]} columns="2" thumbnail direction="column" />
+            <Posts posts={posts} exclude={[post.slug]} range={[1, 2]} columns="2" thumbnail direction="column" />
           </Column>
           <ScrollToHash />
         </Column>
