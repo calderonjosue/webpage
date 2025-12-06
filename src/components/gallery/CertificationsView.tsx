@@ -1,8 +1,24 @@
 "use client";
 
 import { Flex, Heading, Text, Grid, SmartLink, Badge, Icon, Column, Row } from "@once-ui-system/core";
+import React, { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useState, useEffect, useRef } from "react";
+
+import AicsLogo from "@/assets/logos/aics";
+import GoogleLogo from "@/assets/logos/google";
+import PlatziLogo from "@/assets/logos/platzi";
+import PostmanLogo from "@/assets/logos/postman";
+import QalifiedLogo from "@/assets/logos/qalified";
+import UpexLogo from "@/assets/logos/upex";
+
+const institutionLogos: Record<string, React.ComponentType<any>> = {
+  "AICS": AicsLogo,
+  "Google": GoogleLogo,
+  "Platzi": PlatziLogo,
+  "Postman": PostmanLogo,
+  "QAlified": QalifiedLogo,
+  "UPEX": UpexLogo,
+};
 
 interface Certification {
   title: string;
@@ -131,15 +147,20 @@ function CertificationCard({ cert, index }: { cert: Certification; index: number
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Row gap="s" wrap>
+      <Row gap="s" wrap vertical="center">
         <Badge background={institutionColors[cert.institution] || "neutral-alpha-weak"}>
-          {cert.institution}
+          <Row gap="4" vertical="center">
+            {institutionLogos[cert.institution] && 
+              React.createElement(institutionLogos[cert.institution], { style: { width: '16px', height: '16px' } })
+            }
+            <Text variant="label-default-xs">{cert.institution}</Text>
+          </Row>
         </Badge>
         <Badge background="neutral-alpha-weak">
           <Row gap="4" vertical="center">
             <Icon name={categoryIcons[cert.category]} size="xs" />
-            <Text variant="label-default-xs" style={{ textTransform: "capitalize" }}>
-              {cert.category}
+            <Text variant="label-default-xs">
+              {cert.category === 'ux' ? 'UX' : cert.category.charAt(0).toUpperCase() + cert.category.slice(1)}
             </Text>
           </Row>
         </Badge>
@@ -226,9 +247,14 @@ function FeaturedCertCard({ cert, index }: { cert: Certification; index: number 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Row gap="s" wrap>
+      <Row gap="s" wrap vertical="center">
         <Badge background={institutionColors[cert.institution] || "surface"}>
-          {cert.institution}
+          <Row gap="4" vertical="center">
+            {institutionLogos[cert.institution] && 
+              React.createElement(institutionLogos[cert.institution], { style: { width: '20px', height: '20px' } })
+            }
+            <Text variant="label-default-s">{cert.institution}</Text>
+          </Row>
         </Badge>
         <Badge background="surface">
           <Row gap="4" vertical="center">
@@ -270,49 +296,10 @@ export default function CertificationsView() {
   const [selectedYear, setSelectedYear] = useState<number | "all">("all");
   
   const allCertifications: Certification[] = [
-    // Featured certifications
-    { 
-      title: "Test Automation with Playwright Course", 
-      date: "September 2024", 
-      institution: "Platzi", 
-      category: "testing", 
-      featured: true, 
-      year: 2024,
-      description: "Advanced E2E testing with Playwright framework",
-      skills: ["Playwright", "E2E Testing", "Automation"]
-    },
-    { 
-      title: "Postman API Fundamentals Student Expert", 
-      date: "July 2024", 
-      institution: "Postman", 
-      category: "testing", 
-      featured: true, 
-      year: 2024,
-      description: "API testing and automation with Postman",
-      skills: ["API Testing", "Postman", "REST"]
-    },
-    { 
-      title: "Accredited Software Testing Fundamentals Certification (AICS ASTFC)", 
-      date: "July 2024", 
-      institution: "AICS", 
-      category: "testing", 
-      featured: true, 
-      year: 2024,
-      description: "Comprehensive software testing fundamentals",
-      skills: ["Testing Fundamentals", "QA", "Best Practices"]
-    },
-    { 
-      title: "UX Design School", 
-      date: "June 2021", 
-      institution: "Platzi", 
-      category: "ux", 
-      featured: true, 
-      year: 2021,
-      description: "Complete UX design methodology and practices",
-      skills: ["UX Design", "User Research", "Prototyping"]
-    },
-    
-    // Testing & QA
+    { title: "Test Automation with Playwright Course", date: "September 2024", institution: "Platzi", category: "testing", featured: true, year: 2024, description: "Advanced E2E testing with Playwright framework", skills: ["Playwright", "E2E Testing", "Automation"] },
+    { title: "Postman API Fundamentals Student Expert", date: "July 2024", institution: "Postman", category: "testing", featured: true, year: 2024, description: "API testing and automation with Postman", skills: ["API Testing", "Postman", "REST"] },
+    { title: "Accredited Software Testing Fundamentals Certification (AICS ASTFC)", date: "July 2024", institution: "AICS", category: "testing", featured: true, year: 2024, description: "Comprehensive software testing fundamentals", skills: ["Testing Fundamentals", "QA", "Best Practices"] },
+    { title: "UX Design School", date: "June 2021", institution: "Platzi", category: "ux", featured: true, year: 2021, description: "Complete UX design methodology and practices", skills: ["UX Design", "User Research", "Prototyping"] },
     { title: "Software Testing Foundations Course", date: "May 2023", institution: "Platzi", category: "testing", year: 2023 },
     { title: "Introduction to Test Automation Course", date: "May 2023", institution: "Platzi", category: "testing", year: 2023 },
     { title: "SQL QA", date: "October 2023", institution: "UPEX", category: "testing", year: 2023 },
@@ -326,14 +313,10 @@ export default function CertificationsView() {
     { title: "Engineer Learning Path", date: "September 2024", institution: "Postman", category: "testing", year: 2024 },
     { title: "Advanced Cypress Course", date: "September 2024", institution: "Platzi", category: "testing", year: 2024 },
     { title: "UI Test Automation with Cypress Course", date: "September 2024", institution: "Platzi", category: "testing", year: 2024 },
-    
-    // Programming
     { title: "Prework Course: Development Environment Setup on Windows", date: "July 2021", institution: "Platzi", category: "programming", year: 2021 },
     { title: "TypeScript Course", date: "September 2024", institution: "Platzi", category: "programming", year: 2024 },
     { title: "JavaScript Fundamentals Course", date: "September 2024", institution: "Platzi", category: "programming", year: 2024 },
     { title: "Python Course", date: "September 2024", institution: "Platzi", category: "programming", year: 2024 },
-    
-    // UX/UI
     { title: "Information Architecture Course with Usaria", date: "June 2021", institution: "Platzi", category: "ux", year: 2021 },
     { title: "UX Process Management Course", date: "April 2021", institution: "Platzi", category: "ux", year: 2021 },
     { title: "User-Centered Design Course", date: "April 2021", institution: "Platzi", category: "ux", year: 2021 },
@@ -353,8 +336,6 @@ export default function CertificationsView() {
     { title: "UX Strategies for Businesses Course", date: "June 2021", institution: "Platzi", category: "ux", year: 2021 },
     { title: "Web Accessibility Course", date: "July 2021", institution: "Platzi", category: "ux", year: 2021 },
     { title: "Applied Design Sprint Course", date: "July 2021", institution: "Platzi", category: "ux", year: 2021 },
-    
-    // Marketing
     { title: "Customer Service & User Support Course", date: "February 2021", institution: "Platzi", category: "marketing", year: 2021 },
     { title: "Sales with WhatsApp Course", date: "March 2021", institution: "Platzi", category: "marketing", year: 2021 },
     { title: "Practical Sales Course: Techniques to Qualify and Convert", date: "March 2021", institution: "Platzi", category: "marketing", year: 2021 },
@@ -416,39 +397,19 @@ export default function CertificationsView() {
       `}</style>
       
       <Flex direction="column" gap="xl" paddingY="l">
-        {/* Header Section */}
         <Flex direction="column" gap="m">
           <Heading variant="display-strong-l">{t("cert.title")}</Heading>
           <Text variant="body-default-l" onBackground="neutral-weak">
-            {t("cert.linkedin")}{" "}
-            <SmartLink 
-              href="https://www.linkedin.com/in/calderon-josue-qa-analyst/details/certifications/"
-              target="_blank"
-            >
-              LinkedIn
-            </SmartLink>
+            {t("cert.linkedin")} <SmartLink href="https://www.linkedin.com/in/calderon-josue-qa-analyst/details/certifications/" target="_blank">LinkedIn</SmartLink>
           </Text>
         </Flex>
 
-        {/* Animated Total Counter */}
-        <Flex 
-          direction="column" 
-          gap="m" 
-          padding="xl" 
-          background="brand-alpha-weak" 
-          radius="l"
-          border="brand-alpha-medium"
-          horizontal="center"
-          align="center"
-        >
+        <Flex direction="column" gap="m" padding="xl" background="brand-alpha-weak" radius="l" border="brand-alpha-medium" horizontal="center" align="center">
           <AnimatedCounter target={totalCerts} />
           <Heading variant="heading-strong-m">Professional Certifications</Heading>
-          <Text variant="body-default-m" onBackground="neutral-weak" align="center">
-            Continuous learning in Testing, UX/UI, Marketing and Programming
-          </Text>
+          <Text variant="body-default-m" onBackground="neutral-weak" align="center">Continuous learning in Testing, UX/UI, Marketing and Programming</Text>
         </Flex>
 
-        {/* Progress Bars */}
         <Flex direction="column" gap="l" padding="l" background="surface" radius="l" border="neutral-alpha-weak">
           <Heading variant="heading-strong-m">Distribution by Category</Heading>
           <Grid columns="1" gap="l">
@@ -459,34 +420,17 @@ export default function CertificationsView() {
           </Grid>
         </Flex>
 
-        {/* Year Filter */}
         <Flex direction="column" gap="m">
           <Heading variant="heading-strong-m">Filter by Year</Heading>
           <Row gap="s" wrap>
-            <Badge
-              background="surface"
-              style={{ cursor: "pointer" }}
-              onClick={() => setSelectedYear("all")}
-            >
-              All ({totalCerts})
-            </Badge>
+            <Badge background="surface" style={{ cursor: "pointer" }} onClick={() => setSelectedYear("all")}>All ({totalCerts})</Badge>
             {years.map(year => {
               const count = allCertifications.filter(c => c.year === year).length;
-              return (
-                <Badge
-                  key={year}
-                  background="surface"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setSelectedYear(year)}
-                >
-                  {year} ({count})
-                </Badge>
-              );
+              return <Badge key={year} background="surface" style={{ cursor: "pointer" }} onClick={() => setSelectedYear(year)}>{year} ({count})</Badge>;
             })}
           </Row>
         </Flex>
 
-        {/* Summary Stats */}
         <Grid columns="4" s={{ columns: "2" }} gap="m">
           <Flex direction="column" gap="8" padding="m" background="surface" radius="m" border="neutral-alpha-weak">
             <Text variant="label-default-s" onBackground="neutral-weak">{t("cert.testing")}</Text>
@@ -506,87 +450,47 @@ export default function CertificationsView() {
           </Flex>
         </Grid>
 
-        {/* Featured Certifications */}
         {featuredCerts.length > 0 && (
           <Flex direction="column" gap="l" marginTop="l">
-            <Heading variant="heading-strong-l">
-              <Row gap="8" vertical="center">
-                <Icon name="certificate" size="m" />
-                Featured Certifications
-              </Row>
-            </Heading>
+            <Heading variant="heading-strong-l"><Row gap="8" vertical="center"><Icon name="certificate" size="m" />Featured Certifications</Row></Heading>
             <Grid columns="2" s={{ columns: "1" }} gap="l">
-              {featuredCerts.map((cert, index) => (
-                <FeaturedCertCard key={index} cert={cert} index={index} />
-              ))}
+              {featuredCerts.map((cert, index) => <FeaturedCertCard key={index} cert={cert} index={index} />)}
             </Grid>
           </Flex>
         )}
 
-        {/* Testing & QA Section */}
         {testingCerts.length > 0 && (
           <Flex direction="column" gap="l" marginTop="xl">
-            <Heading variant="heading-strong-l">
-              <Row gap="8" vertical="center">
-                <Icon name="rocket" size="m" />
-                {t("cert.testing.title")}
-              </Row>
-            </Heading>
+            <Heading variant="heading-strong-l"><Row gap="8" vertical="center"><Icon name="rocket" size="m" />{t("cert.testing.title")}</Row></Heading>
             <Grid columns="3" m={{ columns: "2" }} s={{ columns: "1" }} gap="m">
-              {testingCerts.map((cert, index) => (
-                <CertificationCard key={index} cert={cert} index={index} />
-              ))}
+              {testingCerts.map((cert, index) => <CertificationCard key={index} cert={cert} index={index} />)}
             </Grid>
           </Flex>
         )}
 
-        {/* Programming Section */}
         {programmingCerts.length > 0 && (
           <Flex direction="column" gap="l" marginTop="xl">
-            <Heading variant="heading-strong-l">
-              <Row gap="8" vertical="center">
-                <Icon name="typescript" size="m" />
-                {t("cert.programming.title")}
-              </Row>
-            </Heading>
+            <Heading variant="heading-strong-l"><Row gap="8" vertical="center"><Icon name="typescript" size="m" />{t("cert.programming.title")}</Row></Heading>
             <Grid columns="3" m={{ columns: "2" }} s={{ columns: "1" }} gap="m">
-              {programmingCerts.map((cert, index) => (
-                <CertificationCard key={index} cert={cert} index={index} />
-              ))}
+              {programmingCerts.map((cert, index) => <CertificationCard key={index} cert={cert} index={index} />)}
             </Grid>
           </Flex>
         )}
 
-        {/* UX/UI Section */}
         {uxCerts.length > 0 && (
           <Flex direction="column" gap="l" marginTop="xl">
-            <Heading variant="heading-strong-l">
-              <Row gap="8" vertical="center">
-                <Icon name="design" size="m" />
-                {t("cert.ux.title")}
-              </Row>
-            </Heading>
+            <Heading variant="heading-strong-l"><Row gap="8" vertical="center"><Icon name="design" size="m" />{t("cert.ux.title")}</Row></Heading>
             <Grid columns="3" m={{ columns: "2" }} s={{ columns: "1" }} gap="m">
-              {uxCerts.map((cert, index) => (
-                <CertificationCard key={index} cert={cert} index={index} />
-              ))}
+              {uxCerts.map((cert, index) => <CertificationCard key={index} cert={cert} index={index} />)}
             </Grid>
           </Flex>
         )}
 
-        {/* Marketing Section */}
         {marketingCerts.length > 0 && (
           <Flex direction="column" gap="l" marginTop="xl">
-            <Heading variant="heading-strong-l">
-              <Row gap="8" vertical="center">
-                <Icon name="globe" size="m" />
-                {t("cert.marketing.title")}
-              </Row>
-            </Heading>
+            <Heading variant="heading-strong-l"><Row gap="8" vertical="center"><Icon name="globe" size="m" />{t("cert.marketing.title")}</Row></Heading>
             <Grid columns="3" m={{ columns: "2" }} s={{ columns: "1" }} gap="m">
-              {marketingCerts.map((cert, index) => (
-                <CertificationCard key={index} cert={cert} index={index} />
-              ))}
+              {marketingCerts.map((cert, index) => <CertificationCard key={index} cert={cert} index={index} />)}
             </Grid>
           </Flex>
         )}

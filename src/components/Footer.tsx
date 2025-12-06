@@ -1,9 +1,16 @@
+"use client";
+
 import { Row, IconButton, SmartLink, Text } from "@once-ui-system/core";
 import { person, social } from "@/resources";
 import styles from "./Footer.module.scss";
+import { useEffect, useState } from "react";
 
 export const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState<number>(2025);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   return (
     <Row as="footer" fillWidth padding="8" horizontal="center" s={{ direction: "column" }}>
@@ -23,7 +30,10 @@ export const Footer = () => {
       >
         <Text variant="body-default-s" onBackground="neutral-strong">
           <Text onBackground="neutral-weak">© {currentYear}</Text>
-          <Text paddingX="4">{person.name}</Text>
+          <Text>{person.name}. Creado con</Text>
+          <SmartLink href="https://github.com/once-ui-system/magic-portfolio">
+            Magic Portfolio
+          </SmartLink>
         </Text>
         <Row gap="16">
           {social.map(
