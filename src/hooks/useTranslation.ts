@@ -1,8 +1,8 @@
 'use client';
-import { useLocale } from 'next-intl';
-import { translations, Locale } from '@/i18n/config';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/i18n/config';
 
 export function useTranslation() {
-  const locale = useLocale() as Locale;
-  return translations[locale] || translations.en;
+  const { language } = useLanguage();
+  return translations[language as keyof typeof translations] || translations.en;
 }
